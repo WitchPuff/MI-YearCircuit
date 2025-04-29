@@ -1,0 +1,7 @@
+label,prompt,tokens_len,year1,year2
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1942 earlier than 1911? Answer with 'Yes' or 'No'.
+A:",46,1942,1911
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1954 earlier than 2006? Answer with 'Yes' or 'No'.
+A:",46,1954,2006
