@@ -146,7 +146,7 @@ def compare_causal(model,
 
 
 
-def plot_compare_head(df, caption='', metric='score_b2a', vmax=None, vmin=None):
+def plot_compare_head(df, caption='', metric='score_b2a', vmax=None, vmin=None, ret_dir='circuit'):
 
 
     # metrics = ["score_b2a", "sim_a", "sim_b", "qk_diff", "diff(sim_a, sim_b)"]
@@ -160,33 +160,15 @@ def plot_compare_head(df, caption='', metric='score_b2a', vmax=None, vmin=None):
     plt.xlabel("Layer")
     plt.ylabel("Head")
     plt.tight_layout()
-    plt.savefig(f"circuit/compare_head_{caption}_{metric}.png")
+    os.makedirs(ret_dir, exist_ok=True)
+    plt.savefig(f"{ret_dir}/compare_head_{caption}_{metric}.png")
+    print(f"compare_head visualized in {ret_dir}/compare_head_{caption}_{metric}.png")
 
-if __name__ == "__main__":
-    # model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-    # model.cfg.use_attn_result = True
-    # model.set_use_attn_result(True)
-    # model = model.to('cuda')
-    # csv_path = "dataset_qa_yesno_150_1800_2020_True.csv"
-    # sample_size=10
-    # prompts, labels = load_data(csv_path, sample_size=sample_size)
-    
-    # results = pd.DataFrame()
-    # results = []
-    # ret_df = pd.DataFrame()
-    # for i, (prompt, label) in tqdm(enumerate(zip(prompts, labels)), total=len(prompts)):
-    #     results += find_compare_circuit(
-    #         model=model,
-    #         prompts=[prompt],
-    #         true_label=label,
-    #         false_label="Yes" if label == "No" else "No",
-    #     )
-    # ret_df = pd.DataFrame(results)
-    # ret_dir = os.path.join("circuit", '_'.join(csv_path.split("/")[-3:]).split(".")[0]+f"_{sample_size}")
-    # os.makedirs(ret_dir, exist_ok=True)
-    # ret_df.to_csv(os.path.join(ret_dir, "compare_circuit.csv"), index=False)
-
-    with open(os.path.join('circuit', "compare_circuit.csv"), "r") as f:
+def visualize_compare_head(min_year=1800, max_year=2020, sample_size=10, condition=False, ret_dir=None):
+    if ret_dir is None:
+        ret_dir = os.path.join("circuit", f'{min_year}_{max_year}_{sample_size}{"_differ_in_first_digit" if condition else ""}')   
+        
+    with open(os.path.join(ret_dir, "compare_circuit.csv"), "r") as f:
         df = pd.read_csv(f)
     metrics = ['delta', "score_b2a", "sim_a", "sim_b", "qk_diff"]
     df = df.groupby(['layer_id', 'head_id', 'bit']).agg({metric: "mean" for metric in metrics}).reset_index()
@@ -198,6 +180,44 @@ if __name__ == "__main__":
             #     vmax = df[metric].max()
             #     vmin = df[metric].min()
             print(f"\n===== Top heads compare heads (Bit{bit}, {metric} desc) =====")
-            plot_compare_head(bit_df, caption=f"Digit{bit}", metric=metric)
+            plot_compare_head(bit_df, caption=f"Digit{bit}", metric=metric, ret_dir=ret_dir)
             ret_df = bit_df.sort_values(metric, ascending=False).head(10).reset_index(drop=True)
             print(ret_df.head())
+            
+
+if __name__ == "__main__":
+    model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    model.cfg.use_attn_result = True
+    model.set_use_attn_result(True)
+    model = model.to('cuda')
+    
+    min_year, max_year = 1800, 2020
+    sample_size = 10
+    condition = False
+    ret_dir = os.path.join("circuit", f'{min_year}_{max_year}_{sample_size}{"_differ_in_first_digit" if condition else ""}')   
+    
+    csv_path = f"dataset_qa_yesno_150_{min_year}_{max_year}{'_True' if condition else ''}.csv"
+    prompts, labels = load_data(csv_path, sample_size=sample_size)
+    
+    results = pd.DataFrame()
+    results = []
+    ret_df = pd.DataFrame()
+    for i, (prompt, label) in tqdm(enumerate(zip(prompts, labels)), total=len(prompts)):
+        results += find_compare_circuit(
+            model=model,
+            prompts=[prompt],
+            true_label=label,
+            false_label="Yes" if label == "No" else "No",
+        )
+    ret_df = pd.DataFrame(results)
+    
+    os.makedirs(ret_dir, exist_ok=True)
+    ret_df.to_csv(os.path.join(ret_dir, "compare_circuit.csv"), index=False)
+
+    visualize_compare_head(
+        min_year=min_year,
+        max_year=max_year,
+        sample_size=sample_size,
+        condition=condition,
+        ret_dir=ret_dir
+    )

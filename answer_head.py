@@ -103,6 +103,7 @@ def plot_answer_head(df, metrics=["delta", "cos_true"], ret_dir='circuit'):
     plt.tight_layout()
     os.makedirs(ret_dir, exist_ok=True)
     plt.savefig(f"{ret_dir}/answer_head.png")
+    print("answer_head visualized in", f"{ret_dir}/answer_head.png")
 
 
 def count_attn_tokens(df):
@@ -147,9 +148,10 @@ def plot_attn_tokens(df, ret_dir='circuit'):
     plt.tight_layout()
     os.makedirs(ret_dir, exist_ok=True)
     plt.savefig(f"{ret_dir}/attn_tokens.png")
+    print("attn_tokens visualized in", f"{ret_dir}/attn_tokens.png")
 
 def visualize_answer_heads(min_year=None, max_year=None, sample_size=None, condition=False, 
-              ret_dir='circuit'):
+              ret_dir=None):
     if ret_dir is None:
         ret_dir = os.path.join("circuit", f'{min_year}_{max_year}_{sample_size}{"_differ_in_first_digit" if condition else ""}')
     with open(f"{ret_dir}/answer_head.csv", "r") as f:
@@ -162,7 +164,6 @@ def visualize_answer_heads(min_year=None, max_year=None, sample_size=None, condi
     df = df.groupby(['layer_id', 'head_id']).agg({"cos_true": "mean", "delta": "mean"}).reset_index()
     plot_answer_head(df, metrics=["delta", "cos_true"], ret_dir=ret_dir)
     
-    print('==== Answer Circuit ====')
     print("\n===== Top heads writing answer residual (cos_true desc) =====")
     cos_df = df.sort_values("cos_true", ascending=False).head(15).reset_index(drop=True)
     print(cos_df)
