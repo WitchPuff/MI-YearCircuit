@@ -30,6 +30,7 @@ def plot_layer_causal(df, fig_dir="causal/layer_causal"):
     fig_path = os.path.join(fig_dir, "yes_no_heatmap.png")
     os.makedirs(fig_dir, exist_ok=True)
     plt.savefig(fig_path)
+    print(f"yes_no_heatmap visualized in {fig_path}")
     plt.close()
     
     df = df[df["bit"].notna()]
@@ -61,6 +62,8 @@ def plot_layer_causal(df, fig_dir="causal/layer_causal"):
     plt.tight_layout()
     fig_path = os.path.join(fig_dir, "bit_heatmap.png")
     plt.savefig(fig_path)
+    print(f"bit_heatmap visualized in {fig_path}")
+    plt.close()
 
 def plot_head_causal(df, fig_dir="causal/head_causal"):
 
@@ -94,6 +97,7 @@ def plot_head_causal(df, fig_dir="causal/head_causal"):
         plt.tight_layout()
         fig_path = os.path.join(fig_dir, f"yes_no_heatmap_layer_{layer_id}.png")
         plt.savefig(fig_path)
+        print(f"yes_no_heatmap_layer_{layer_id} visualized in {fig_path}")
         plt.close()
 
     
@@ -129,6 +133,7 @@ def plot_head_causal(df, fig_dir="causal/head_causal"):
         plt.tight_layout() 
         fig_path = os.path.join(fig_dir, f"bit_heatmap_layer_{layer_id}.png")
         plt.savefig(fig_path)
+        print(f"bit_heatmap_layer_{layer_id} visualized in {fig_path}")
         plt.close()
 
 
