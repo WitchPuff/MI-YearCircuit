@@ -18,6 +18,7 @@ def find_answer_circuit(
         false_label: str,
         answer_pos: int | None = None,
         head_limit: int | None = None,
+        yes_no_pos=(37, 41),
         device='cuda'
 ):
 
@@ -42,7 +43,8 @@ def find_answer_circuit(
         n_heads = model.cfg.n_heads if head_limit is None else head_limit
         for head_id in range(n_heads):
             
-            def patch(result, hook, head_idx=head_id, tok_pos=answer_pos):
+            def patch(result, hook, head_idx=head_id, 
+                      tok_pos=yes_no_pos[0] if true_label == "Yes" else yes_no_pos[1]):
                 result = result.clone()
                 result[:, tok_pos, head_idx, :] = 0
                 return result
@@ -57,8 +59,8 @@ def find_answer_circuit(
             patched_score = get_metric(patched_logits)
             base_score = get_metric(base_logits)
             delta = base_score - patched_score
-            if delta <= 0:
-                continue
+            # if delta <= 0:
+            #     continue
 
             attn = base_cache[f"blocks.{layer_id}.attn.hook_pattern"][0, head_id, answer_pos]
             
@@ -84,7 +86,7 @@ def find_answer_circuit(
 
     return results
 
-def plot_answer_head(df, metrics=["delta", "cos_true"]):
+def plot_answer_head(df, metrics=["delta", "cos_true"], ret_dir='circuit'):
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 8), sharey=True)
     fig.suptitle("Answer Circuit", fontsize=14)
@@ -95,12 +97,12 @@ def plot_answer_head(df, metrics=["delta", "cos_true"]):
         mdf = df.pivot(index='head_id', columns='layer_id', values=metric)
         sns.heatmap(mdf, ax=ax, cmap="coolwarm", cbar=True)
 
-        ax.set_title(f"Year {metric}")
+        ax.set_title(f"{metric}")
         ax.set_xlabel("Layer")
         ax.set_ylabel("Head")
     plt.tight_layout()
-    os.makedirs("circuit", exist_ok=True)
-    plt.savefig(f"circuit/answer_head.png")
+    os.makedirs(ret_dir, exist_ok=True)
+    plt.savefig(f"{ret_dir}/answer_head.png")
 
 
 def count_attn_tokens(df):
@@ -126,9 +128,10 @@ def count_attn_tokens(df):
     
     return pd.DataFrame(data)
 
-def plot_attn_tokens(df):
+def plot_attn_tokens(df, ret_dir='circuit'):
 
-    pivot = df.pivot_table(index="token", columns=["layer_id", "head_id"], values="count", fill_value=0)
+    pivot = df.pivot_table(index="token", columns=["layer_id", "head_id"], 
+                           values="count", fill_value=0)
 
     pivot.columns = [f"L{l}-H{h}" for l, h in pivot.columns]
 
@@ -142,17 +145,53 @@ def plot_attn_tokens(df):
     plt.xlabel("Layer - Head")
     plt.ylabel("Token")
     plt.tight_layout()
-    plt.savefig("circuit/attn_tokens.png")
+    os.makedirs(ret_dir, exist_ok=True)
+    plt.savefig(f"{ret_dir}/attn_tokens.png")
+
+def visualize_answer_heads(min_year=None, max_year=None, sample_size=None, condition=False, 
+              ret_dir='circuit'):
+    if ret_dir is None:
+        ret_dir = os.path.join("circuit", f'{min_year}_{max_year}_{sample_size}{"_differ_in_first_digit" if condition else ""}')
+    with open(f"{ret_dir}/answer_head.csv", "r") as f:
+        df = pd.read_csv(f)
+    attn_freq_df = count_attn_tokens(df)
+        
+    merged_df = pd.merge(attn_freq_df, df, on=["layer_id", "head_id"], how="left")
+    plot_attn_tokens(merged_df, ret_dir=ret_dir)
+    
+    df = df.groupby(['layer_id', 'head_id']).agg({"cos_true": "mean", "delta": "mean"}).reset_index()
+    plot_answer_head(df, metrics=["delta", "cos_true"], ret_dir=ret_dir)
+    
+    print('==== Answer Circuit ====')
+    print("\n===== Top heads writing answer residual (cos_true desc) =====")
+    cos_df = df.sort_values("cos_true", ascending=False).head(15).reset_index(drop=True)
+    print(cos_df)
+    merged_df = pd.merge(attn_freq_df, cos_df, on=["layer_id", "head_id"], how="right")
+    merged_df = merged_df.sort_values("cos_true", ascending=False)
+    print(merged_df)
+    print("\n===== Top heads writing answer residual (delta desc)=====")
+    delta_df = df.sort_values("delta", ascending=False).head(15).reset_index(drop=True)
+    print(delta_df)
+    merged_df = pd.merge(attn_freq_df, delta_df, on=["layer_id", "head_id"], how="right")
+    merged_df = merged_df.sort_values("delta", ascending=False)
+    print(merged_df)
 
 if __name__ == "__main__":
     model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
     model.cfg.use_attn_result = True
     model.set_use_attn_result(True)
     model = model.to('cuda')
-    prompts, labels = load_data("dataset_qa_yesno_150_1800_2020.csv", sample_size=10)
+    
+    min_year, max_year = 1800, 2020
+    sample_size = 10
+    condition = False
+    ret_dir = os.path.join("circuit", f'{min_year}_{max_year}_{sample_size}{"_differ_in_first_digit" if condition else ""}')   
+    
+    csv_path = f"dataset_qa_yesno_150_{min_year}_{max_year}{'_True' if condition else ''}.csv"
+    prompts, labels = load_data(csv_path, sample_size=sample_size)
     
     results = pd.DataFrame()
-    layers_ids_yn=range(11, 32)
+    layers_ids_yn=range(32)
     results = []
     ret_df = pd.DataFrame()
     for i, (prompt, label) in tqdm(enumerate(zip(prompts, labels)), total=len(prompts)):
@@ -164,16 +203,8 @@ if __name__ == "__main__":
             false_label="Yes" if label == "No" else "No",
         )
     ret_df = pd.DataFrame(results)
-    os.makedirs("circuit", exist_ok=True)
-    ret_df.to_csv("circuit/answer_head.csv", index=False)
-    with open("circuit/answer_head.csv", "r") as f:
-        df = pd.read_csv(f)
-    df = df.groupby(['layer_id', 'head_id']).agg({"cos_true": "mean", "delta": "mean"}).reset_index()
-    plot_answer_head(df, metrics=["delta", "cos_true"])
-    print('==== Answer Circuit ====')
-    print("\n===== Top heads writing answer residual (cos_true desc) =====")
-    cos_df = df.sort_values("cos_true", ascending=False).head(5).reset_index(drop=True)
-    print(cos_df.head())
-    print("\n===== Top heads writing answer residual (delta desc)=====")
-    delta_df = df.sort_values("delta", ascending=False).head(5).reset_index(drop=True)
-    print(delta_df.head())
+    os.makedirs(ret_dir, exist_ok=True)
+    ret_df.to_csv(f"{ret_dir}/answer_head.csv", index=False)
+    
+    # PRINT RESULTS
+    visualize_answer_heads(min_year, max_year, sample_size, condition, ret_dir=ret_dir)

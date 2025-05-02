@@ -1,6 +1,6 @@
 import pandas as pd
 from causal import plot_head_causal, plot_layer_causal
-from answer_head import plot_answer_head, plot_attn_tokens, count_attn_tokens
+from answer_head import visualize_answer_heads
 from collections import Counter
 import pandas as pd
 
@@ -17,30 +17,12 @@ if __name__ == "__main__":
     # with open("causal/head_causal/results.csv", "r") as f:
     #     results = pd.read_csv(f)
     # plot_head_causal(results)
-
-    print('==== Answer Circuit ====')
-    with open("circuit/answer_head.csv", "r") as f:
-        df = pd.read_csv(f)
-    attn_freq_df = count_attn_tokens(df)
-    df = df.groupby(['layer_id', 'head_id']).agg({"cos_true": "mean", "delta": "mean"}).reset_index()
-    merged_df = pd.merge(attn_freq_df, df, on=["layer_id", "head_id"], how="left")
-    plot_attn_tokens(merged_df)
-    plot_answer_head(df, metrics=["delta", "cos_true"])
-    pd.set_option('display.max_rows', None)
-    pd.set_option('display.max_columns', None)
-
-    print("\n===== Top heads writing answer residual (cos_true desc) =====")
-    cos_df = df.sort_values("cos_true", ascending=False).head(15).reset_index(drop=True)
-    print(cos_df)
-    merged_df = pd.merge(attn_freq_df, cos_df, on=["layer_id", "head_id"], how="right")
-    merged_df = merged_df.sort_values("cos_true", ascending=False)
-    print(merged_df)
-    print("\n===== Top heads writing answer residual (delta desc)=====")
-    delta_df = df.sort_values("delta", ascending=False).head(15).reset_index(drop=True)
-    print(delta_df)
-    merged_df = pd.merge(attn_freq_df, delta_df, on=["layer_id", "head_id"], how="right")
-    merged_df = merged_df.sort_values("delta", ascending=False)
-    print(merged_df)
+    
+    visualize_answer_heads(min_year=1800, max_year=2020, sample_size=10, condition=False, ret_dir='circuit')
+    # visualize_answer_heads(min_year=1800, max_year=2020, sample_size=10, condition=True, ret_dir=None)
+    
+    
+    
     # print('==== Compare Circuit ====')
     # with open("circuit/compare_circuit.csv", "r") as f:
     #     df = pd.read_csv(f)
