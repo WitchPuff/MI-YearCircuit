@@ -3,22 +3,31 @@ import pandas as pd
 import os
 
 
-def get_year_pair(max_year=2020, min_year=1950):
-    year1 = random.randint(min_year, max_year)
-    year2 = random.randint(min_year, max_year)
+
+def get_year_pair(max_year=2020, min_year=1950, condition=False):
+    if condition:
+        year1 = random.randint(min_year, 1999)
+    else:
+        year1 = random.randint(min_year, max_year)
+    year2 = year1
     while year1 == year2:
         year2 = random.randint(min_year, max_year)
+        if condition:
+            year2 = random.randint(2000, max_year)
+            if random.random() < 0.5:
+                year1, year2 = year2, year1
     return year1, year2
 
-def get_prompt(max_year=2020, min_year=1950, prompt_style='qa_yesno', example_num=0):
+def get_prompt(max_year=2020, min_year=1950, prompt_style='qa_yesno', fewshot=0,
+                condition=False):
 
-    year1, year2 = get_year_pair(max_year, min_year)
+    year1, year2 = get_year_pair(max_year, min_year, condition)
     prompt = "<system> You are a bot that can compare years. <system>\n"
     true_label = "True"
     false_label = "False"
 
     if prompt_style == "qa":
-        for _ in range(example_num):
+        for _ in range(fewshot):
             year3, year4 = get_year_pair(max_year, min_year)
             if year1 == year3 or year2 == year4:
                 continue
@@ -26,7 +35,7 @@ def get_prompt(max_year=2020, min_year=1950, prompt_style='qa_yesno', example_nu
         prompt += f"Q: The year {year1} is earlier than {year2}. True or False?\nA:"
 
     elif prompt_style == "tf":
-        for _ in range(example_num):
+        for _ in range(fewshot):
             year3, year4 = get_year_pair(max_year, min_year)
             if year1 == year3 or year2 == year4:
                 continue
@@ -36,7 +45,7 @@ def get_prompt(max_year=2020, min_year=1950, prompt_style='qa_yesno', example_nu
     elif prompt_style == "qa_yesno":
         true_label = "Yes"
         false_label = "No"
-        for _ in range(example_num):
+        for _ in range(fewshot):
             year3, year4 = get_year_pair(max_year, min_year)
             if year1 == year3 or year2 == year4:
                 continue
@@ -81,9 +90,9 @@ if __name__ == "__main__":
     max_year = 2025
     min_year = 1000
     prompt_style = "qa_yesno"
-    example_num = 0
+    fewshot = 0
     for i in range(n_samples):
-        prompt, label, (true_label, false_label) = get_prompt(max_year=max_year, min_year=min_year, prompt_style=prompt_style, example_num=example_num)
+        prompt, label, (true_label, false_label) = get_prompt(max_year=max_year, min_year=min_year, prompt_style=prompt_style, fewshot=fewshot)
         print(f"Prompt {i+1}:", prompt)
         print("Label:", label)
         print("True Label:", true_label)

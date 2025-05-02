@@ -16,9 +16,10 @@ def sanity_check(
     min_year=1950,
     max_year=2020,
     prompt_style="qa_yesno", # this works for phi3
-    example_num=3,
+    fewshot=3,
     use_logits=False,
     verbose=False,
+    condition=False,
     save_dataset=True
 ):
     correct = 0
@@ -28,7 +29,7 @@ def sanity_check(
     for i in tqdm(range(n_samples)):
 
         prompt, label, (true_label, false_label), (year1, year2) = get_prompt(
-            max_year, min_year, prompt_style=prompt_style, example_num=example_num
+            max_year, min_year, prompt_style=prompt_style, fewshot=fewshot, condition=condition
         )
         true_token_id = tokenizer.encode(true_label, add_special_tokens=False)[0]
         false_token_id = tokenizer.encode(false_label, add_special_tokens=False)[0]
@@ -72,8 +73,8 @@ def sanity_check(
         dataset = pd.DataFrame([r for r in results if r["is_correct"]])
         dataset = dataset.drop(columns=["is_correct", "prediction"])
         print(dataset.head())
-        dataset.to_csv(f"dataset_{prompt_style}_{n_samples}.csv", index=False)
-        print(f"Dataset saved to dataset_{prompt_style}_{n_samples}.csv")
+        dataset.to_csv(f"dataset_{prompt_style}_{n_samples}_{condition}.csv", index=False)
+        print(f"Dataset saved to dataset_{prompt_style}_{n_samples}_{condition}.csv")
     
     return accuracy, results
 if __name__ == "__main__":
@@ -88,7 +89,8 @@ if __name__ == "__main__":
         max_year=2020,
         min_year=1800,
         prompt_style="qa_yesno",
-        example_num=0,
+        fewshot=0,
+        condition=True,
         use_logits=True,
         verbose=True
     )

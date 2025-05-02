@@ -8,7 +8,7 @@ import seaborn as sns
 import os
 from data import load_data
 from tqdm import tqdm
-
+from collections import Counter
 
 def find_answer_circuit(
         model,
@@ -41,6 +41,7 @@ def find_answer_circuit(
     for layer_id in layer_ids:
         n_heads = model.cfg.n_heads if head_limit is None else head_limit
         for head_id in range(n_heads):
+            
             def patch(result, hook, head_idx=head_id, tok_pos=answer_pos):
                 result = result.clone()
                 result[:, tok_pos, head_idx, :] = 0
@@ -83,7 +84,66 @@ def find_answer_circuit(
 
     return results
 
+def plot_answer_head(df, metrics=["delta", "cos_true"]):
 
+    fig, axes = plt.subplots(1, 2, figsize=(14, 8), sharey=True)
+    fig.suptitle("Answer Circuit", fontsize=14)
+    # vmax = df[metrics].max().max()
+    # vmin = df[metrics].min().min()
+    for i, ax in enumerate(axes):
+        metric = metrics[i]
+        mdf = df.pivot(index='head_id', columns='layer_id', values=metric)
+        sns.heatmap(mdf, ax=ax, cmap="coolwarm", cbar=True)
+
+        ax.set_title(f"Year {metric}")
+        ax.set_xlabel("Layer")
+        ax.set_ylabel("Head")
+    plt.tight_layout()
+    os.makedirs("circuit", exist_ok=True)
+    plt.savefig(f"circuit/answer_head.png")
+
+
+def count_attn_tokens(df):
+    rows = []
+    for _, row in df.iterrows():
+        layer = row['layer_id']
+        head = row['head_id']
+        attn_top = row['attn_top']
+        tokens = [tok.strip() for tok in attn_top.split("|")]
+        for token in tokens:
+            rows.append((layer, head, token))
+    
+    counter = Counter(rows)
+    
+    data = []
+    for (layer, head, token), count in counter.items():
+        data.append({
+            "layer_id": layer,
+            "head_id": head,
+            "token": token,
+            "count": count
+        })
+    
+    return pd.DataFrame(data)
+
+def plot_attn_tokens(df):
+
+    pivot = df.pivot_table(index="token", columns=["layer_id", "head_id"], values="count", fill_value=0)
+
+    pivot.columns = [f"L{l}-H{h}" for l, h in pivot.columns]
+
+    full_columns = [f"L{l}-H{h}" for l in range(11, 32) for h in range(32)]
+    pivot = pivot.reindex(columns=full_columns, fill_value=0)
+
+    # 绘制热图
+    plt.figure(figsize=(20, 8))
+    plt.xticks(rotation=45)
+    sns.heatmap(pivot, cmap="Reds", cbar=True, annot=False)
+    plt.title("Top5 Most Attended Token Frequency by Answer Token Position")
+    plt.xlabel("Layer - Head")
+    plt.ylabel("Token")
+    plt.tight_layout()
+    plt.savefig("circuit/attn_tokens.png")
 
 if __name__ == "__main__":
     model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
@@ -110,6 +170,8 @@ if __name__ == "__main__":
     with open("circuit/answer_head.csv", "r") as f:
         df = pd.read_csv(f)
     df = df.groupby(['layer_id', 'head_id']).agg({"cos_true": "mean", "delta": "mean"}).reset_index()
+    plot_answer_head(df, metrics=["delta", "cos_true"])
+    print('==== Answer Circuit ====')
     print("\n===== Top heads writing answer residual (cos_true desc) =====")
     cos_df = df.sort_values("cos_true", ascending=False).head(5).reset_index(drop=True)
     print(cos_df.head())
