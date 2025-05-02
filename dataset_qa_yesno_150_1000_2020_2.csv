@@ -1,7 +1,0 @@
-label,prompt,tokens_len,year1,year2
-No,"<system> You are a bot that can compare years. <system>
-Please answer: Is 1995 earlier than 1113? Answer with 'Yes' or 'No'.
-A:",46,1995,1113
-Yes,"<system> You are a bot that can compare years. <system>
-Please answer: Is 1227 earlier than 1553? Answer with 'Yes' or 'No'.
-A:",46,1227,1553
