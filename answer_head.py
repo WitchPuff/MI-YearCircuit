@@ -135,7 +135,6 @@ def plot_attn_tokens(df):
     full_columns = [f"L{l}-H{h}" for l in range(11, 32) for h in range(32)]
     pivot = pivot.reindex(columns=full_columns, fill_value=0)
 
-    # 绘制热图
     plt.figure(figsize=(20, 8))
     plt.xticks(rotation=45)
     sns.heatmap(pivot, cmap="Reds", cbar=True, annot=False)

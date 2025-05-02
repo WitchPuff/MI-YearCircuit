@@ -14,7 +14,7 @@ def get_attn_score(cache, pos1, pos2, layer_id, head_id):
     pattern = cache[f"blocks.{layer_id}.attn.hook_pattern"][0, head_id]  # [Q, K]
     if pos1 > pos2:
         pos1, pos2 = pos2, pos1
-    # score_a2b = pattern[pos1, pos2].item() # the latter b can't see previous a
+    # score_a2b = pattern[pos1, pos2].item() # the previous a can't look at the latter b for causal modelling.
     score_b2a = pattern[pos2, pos1].item()
     return score_b2a
 

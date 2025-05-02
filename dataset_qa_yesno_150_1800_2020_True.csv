@@ -1,0 +1,451 @@
+label,prompt,tokens_len,year1,year2
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2014 earlier than 1800? Answer with 'Yes' or 'No'.
+A:",46,2014,1800
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1947 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1947,2017
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1818 earlier than 2004? Answer with 'Yes' or 'No'.
+A:",46,1818,2004
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2004 earlier than 1861? Answer with 'Yes' or 'No'.
+A:",46,2004,1861
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2020 earlier than 1859? Answer with 'Yes' or 'No'.
+A:",46,2020,1859
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1986? Answer with 'Yes' or 'No'.
+A:",46,2012,1986
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2015 earlier than 1811? Answer with 'Yes' or 'No'.
+A:",46,2015,1811
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1978 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1978,2011
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1844 earlier than 2010? Answer with 'Yes' or 'No'.
+A:",46,1844,2010
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2010 earlier than 1836? Answer with 'Yes' or 'No'.
+A:",46,2010,1836
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2006 earlier than 1877? Answer with 'Yes' or 'No'.
+A:",46,2006,1877
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2002 earlier than 1877? Answer with 'Yes' or 'No'.
+A:",46,2002,1877
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1989 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1989,2017
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2013 earlier than 1868? Answer with 'Yes' or 'No'.
+A:",46,2013,1868
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1902 earlier than 2009? Answer with 'Yes' or 'No'.
+A:",46,1902,2009
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1827 earlier than 2014? Answer with 'Yes' or 'No'.
+A:",46,1827,2014
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1895 earlier than 2005? Answer with 'Yes' or 'No'.
+A:",46,1895,2005
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2018 earlier than 1814? Answer with 'Yes' or 'No'.
+A:",46,2018,1814
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1905 earlier than 2008? Answer with 'Yes' or 'No'.
+A:",46,1905,2008
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2015 earlier than 1887? Answer with 'Yes' or 'No'.
+A:",46,2015,1887
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1977 earlier than 2012? Answer with 'Yes' or 'No'.
+A:",46,1977,2012
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2013 earlier than 1924? Answer with 'Yes' or 'No'.
+A:",46,2013,1924
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2005 earlier than 1911? Answer with 'Yes' or 'No'.
+A:",46,2005,1911
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1952 earlier than 2008? Answer with 'Yes' or 'No'.
+A:",46,1952,2008
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1967 earlier than 2009? Answer with 'Yes' or 'No'.
+A:",46,1967,2009
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1923 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1923,2007
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1922 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1922,2007
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1843 earlier than 2002? Answer with 'Yes' or 'No'.
+A:",46,1843,2002
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2008 earlier than 1932? Answer with 'Yes' or 'No'.
+A:",46,2008,1932
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2019 earlier than 1820? Answer with 'Yes' or 'No'.
+A:",46,2019,1820
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2003 earlier than 1858? Answer with 'Yes' or 'No'.
+A:",46,2003,1858
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2009 earlier than 1964? Answer with 'Yes' or 'No'.
+A:",46,2009,1964
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1882 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1882,2011
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2006 earlier than 1836? Answer with 'Yes' or 'No'.
+A:",46,2006,1836
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1937 earlier than 2001? Answer with 'Yes' or 'No'.
+A:",46,1937,2001
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2007 earlier than 1970? Answer with 'Yes' or 'No'.
+A:",46,2007,1970
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1934 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1934,2011
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1905? Answer with 'Yes' or 'No'.
+A:",46,2012,1905
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1841 earlier than 2003? Answer with 'Yes' or 'No'.
+A:",46,1841,2003
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1881 earlier than 2014? Answer with 'Yes' or 'No'.
+A:",46,1881,2014
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2011 earlier than 1862? Answer with 'Yes' or 'No'.
+A:",46,2011,1862
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2009 earlier than 1955? Answer with 'Yes' or 'No'.
+A:",46,2009,1955
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1879 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1879,2011
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1804 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1804,2011
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2008 earlier than 1863? Answer with 'Yes' or 'No'.
+A:",46,2008,1863
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2017 earlier than 1817? Answer with 'Yes' or 'No'.
+A:",46,2017,1817
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1960 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1960,2011
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1861 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1861,2007
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2015 earlier than 1960? Answer with 'Yes' or 'No'.
+A:",46,2015,1960
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1950 earlier than 2013? Answer with 'Yes' or 'No'.
+A:",46,1950,2013
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1801 earlier than 2005? Answer with 'Yes' or 'No'.
+A:",46,1801,2005
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2019 earlier than 1818? Answer with 'Yes' or 'No'.
+A:",46,2019,1818
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2011 earlier than 1889? Answer with 'Yes' or 'No'.
+A:",46,2011,1889
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2019 earlier than 1830? Answer with 'Yes' or 'No'.
+A:",46,2019,1830
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1991 earlier than 2003? Answer with 'Yes' or 'No'.
+A:",46,1991,2003
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2003 earlier than 1839? Answer with 'Yes' or 'No'.
+A:",46,2003,1839
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2015 earlier than 1866? Answer with 'Yes' or 'No'.
+A:",46,2015,1866
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2016 earlier than 1859? Answer with 'Yes' or 'No'.
+A:",46,2016,1859
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1814? Answer with 'Yes' or 'No'.
+A:",46,2012,1814
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2011 earlier than 1968? Answer with 'Yes' or 'No'.
+A:",46,2011,1968
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1824? Answer with 'Yes' or 'No'.
+A:",46,2012,1824
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1926 earlier than 2010? Answer with 'Yes' or 'No'.
+A:",46,1926,2010
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2018 earlier than 1867? Answer with 'Yes' or 'No'.
+A:",46,2018,1867
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2006 earlier than 1978? Answer with 'Yes' or 'No'.
+A:",46,2006,1978
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2017 earlier than 1922? Answer with 'Yes' or 'No'.
+A:",46,2017,1922
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1888 earlier than 2020? Answer with 'Yes' or 'No'.
+A:",46,1888,2020
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2004 earlier than 1984? Answer with 'Yes' or 'No'.
+A:",46,2004,1984
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2009 earlier than 1897? Answer with 'Yes' or 'No'.
+A:",46,2009,1897
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1839 earlier than 2008? Answer with 'Yes' or 'No'.
+A:",46,1839,2008
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2019 earlier than 1893? Answer with 'Yes' or 'No'.
+A:",46,2019,1893
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1822 earlier than 2003? Answer with 'Yes' or 'No'.
+A:",46,1822,2003
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1883 earlier than 2019? Answer with 'Yes' or 'No'.
+A:",46,1883,2019
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1970 earlier than 2010? Answer with 'Yes' or 'No'.
+A:",46,1970,2010
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1993 earlier than 2005? Answer with 'Yes' or 'No'.
+A:",46,1993,2005
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2014 earlier than 1948? Answer with 'Yes' or 'No'.
+A:",46,2014,1948
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2006 earlier than 1801? Answer with 'Yes' or 'No'.
+A:",46,2006,1801
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1811 earlier than 2014? Answer with 'Yes' or 'No'.
+A:",46,1811,2014
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1942? Answer with 'Yes' or 'No'.
+A:",46,2012,1942
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1893 earlier than 2019? Answer with 'Yes' or 'No'.
+A:",46,1893,2019
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1857? Answer with 'Yes' or 'No'.
+A:",46,2012,1857
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2000 earlier than 1808? Answer with 'Yes' or 'No'.
+A:",46,2000,1808
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1857 earlier than 2002? Answer with 'Yes' or 'No'.
+A:",46,1857,2002
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2011 earlier than 1926? Answer with 'Yes' or 'No'.
+A:",46,2011,1926
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1850 earlier than 2002? Answer with 'Yes' or 'No'.
+A:",46,1850,2002
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2001 earlier than 1976? Answer with 'Yes' or 'No'.
+A:",46,2001,1976
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2019 earlier than 1847? Answer with 'Yes' or 'No'.
+A:",46,2019,1847
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2004 earlier than 1954? Answer with 'Yes' or 'No'.
+A:",46,2004,1954
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2006 earlier than 1906? Answer with 'Yes' or 'No'.
+A:",46,2006,1906
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1982 earlier than 2013? Answer with 'Yes' or 'No'.
+A:",46,1982,2013
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2013 earlier than 1974? Answer with 'Yes' or 'No'.
+A:",46,2013,1974
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1839 earlier than 2018? Answer with 'Yes' or 'No'.
+A:",46,1839,2018
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2005 earlier than 1917? Answer with 'Yes' or 'No'.
+A:",46,2005,1917
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1802 earlier than 2001? Answer with 'Yes' or 'No'.
+A:",46,1802,2001
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2005 earlier than 1943? Answer with 'Yes' or 'No'.
+A:",46,2005,1943
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2008 earlier than 1970? Answer with 'Yes' or 'No'.
+A:",46,2008,1970
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1969 earlier than 2016? Answer with 'Yes' or 'No'.
+A:",46,1969,2016
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2000 earlier than 1889? Answer with 'Yes' or 'No'.
+A:",46,2000,1889
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2013 earlier than 1952? Answer with 'Yes' or 'No'.
+A:",46,2013,1952
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2015 earlier than 1869? Answer with 'Yes' or 'No'.
+A:",46,2015,1869
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1895 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1895,2017
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1914 earlier than 2004? Answer with 'Yes' or 'No'.
+A:",46,1914,2004
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1888 earlier than 2000? Answer with 'Yes' or 'No'.
+A:",46,1888,2000
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2001 earlier than 1845? Answer with 'Yes' or 'No'.
+A:",46,2001,1845
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1824 earlier than 2015? Answer with 'Yes' or 'No'.
+A:",46,1824,2015
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2010 earlier than 1940? Answer with 'Yes' or 'No'.
+A:",46,2010,1940
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1954 earlier than 2008? Answer with 'Yes' or 'No'.
+A:",46,1954,2008
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2014 earlier than 1927? Answer with 'Yes' or 'No'.
+A:",46,2014,1927
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2014 earlier than 1863? Answer with 'Yes' or 'No'.
+A:",46,2014,1863
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2001 earlier than 1804? Answer with 'Yes' or 'No'.
+A:",46,2001,1804
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1937? Answer with 'Yes' or 'No'.
+A:",46,2012,1937
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1938 earlier than 2015? Answer with 'Yes' or 'No'.
+A:",46,1938,2015
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2001 earlier than 1966? Answer with 'Yes' or 'No'.
+A:",46,2001,1966
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1890 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1890,2017
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1866 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1866,2007
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1998 earlier than 2004? Answer with 'Yes' or 'No'.
+A:",46,1998,2004
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1937 earlier than 2013? Answer with 'Yes' or 'No'.
+A:",46,1937,2013
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1823 earlier than 2005? Answer with 'Yes' or 'No'.
+A:",46,1823,2005
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1892 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1892,2017
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1809 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1809,2017
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1923 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1923,2007
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1846 earlier than 2015? Answer with 'Yes' or 'No'.
+A:",46,1846,2015
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1871 earlier than 2004? Answer with 'Yes' or 'No'.
+A:",46,1871,2004
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2014 earlier than 1935? Answer with 'Yes' or 'No'.
+A:",46,2014,1935
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2009 earlier than 1940? Answer with 'Yes' or 'No'.
+A:",46,2009,1940
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1881 earlier than 2010? Answer with 'Yes' or 'No'.
+A:",46,1881,2010
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1864 earlier than 2019? Answer with 'Yes' or 'No'.
+A:",46,1864,2019
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1971 earlier than 2006? Answer with 'Yes' or 'No'.
+A:",46,1971,2006
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1986 earlier than 2010? Answer with 'Yes' or 'No'.
+A:",46,1986,2010
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2012 earlier than 1975? Answer with 'Yes' or 'No'.
+A:",46,2012,1975
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1885 earlier than 2005? Answer with 'Yes' or 'No'.
+A:",46,1885,2005
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2008 earlier than 1897? Answer with 'Yes' or 'No'.
+A:",46,2008,1897
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1865 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1865,2007
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2020 earlier than 1905? Answer with 'Yes' or 'No'.
+A:",46,2020,1905
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1844 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1844,2011
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1848 earlier than 2018? Answer with 'Yes' or 'No'.
+A:",46,1848,2018
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2018 earlier than 1945? Answer with 'Yes' or 'No'.
+A:",46,2018,1945
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2004 earlier than 1978? Answer with 'Yes' or 'No'.
+A:",46,2004,1978
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1869 earlier than 2010? Answer with 'Yes' or 'No'.
+A:",46,1869,2010
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1867 earlier than 2018? Answer with 'Yes' or 'No'.
+A:",46,1867,2018
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1994 earlier than 2019? Answer with 'Yes' or 'No'.
+A:",46,1994,2019
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2011 earlier than 1982? Answer with 'Yes' or 'No'.
+A:",46,2011,1982
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2003 earlier than 1991? Answer with 'Yes' or 'No'.
+A:",46,2003,1991
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2011 earlier than 1980? Answer with 'Yes' or 'No'.
+A:",46,2011,1980
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1874 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1874,2007
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2020 earlier than 1975? Answer with 'Yes' or 'No'.
+A:",46,2020,1975
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2001 earlier than 1865? Answer with 'Yes' or 'No'.
+A:",46,2001,1865
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1899 earlier than 2006? Answer with 'Yes' or 'No'.
+A:",46,1899,2006
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1930 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1930,2011
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1942 earlier than 2011? Answer with 'Yes' or 'No'.
+A:",46,1942,2011
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1839 earlier than 2015? Answer with 'Yes' or 'No'.
+A:",46,1839,2015

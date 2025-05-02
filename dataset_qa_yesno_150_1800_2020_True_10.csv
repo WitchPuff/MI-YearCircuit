@@ -1,0 +1,31 @@
+label,prompt,tokens_len,year1,year2
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2015 earlier than 1811? Answer with 'Yes' or 'No'.
+A:",46,2015,1811
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2006 earlier than 1978? Answer with 'Yes' or 'No'.
+A:",46,2006,1978
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2015 earlier than 1887? Answer with 'Yes' or 'No'.
+A:",46,2015,1887
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2014 earlier than 1800? Answer with 'Yes' or 'No'.
+A:",46,2014,1800
+No,"<system> You are a bot that can compare years. <system>
+Please answer: Is 2011 earlier than 1926? Answer with 'Yes' or 'No'.
+A:",46,2011,1926
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1989 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1989,2017
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1865 earlier than 2007? Answer with 'Yes' or 'No'.
+A:",46,1865,2007
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1841 earlier than 2003? Answer with 'Yes' or 'No'.
+A:",46,1841,2003
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1947 earlier than 2017? Answer with 'Yes' or 'No'.
+A:",46,1947,2017
+Yes,"<system> You are a bot that can compare years. <system>
+Please answer: Is 1888 earlier than 2020? Answer with 'Yes' or 'No'.
+A:",46,1888,2020
