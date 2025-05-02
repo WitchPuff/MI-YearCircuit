@@ -184,16 +184,25 @@ def visualize_compare_head(min_year=1800, max_year=2020, sample_size=10, conditi
             ret_df = bit_df.sort_values(metric, ascending=False).head(10).reset_index(drop=True)
             print(ret_df.head())
             
-
+import argparse
 if __name__ == "__main__":
-    model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    parser = argparse.ArgumentParser(description="Comparison Circuit Analysis")
+    parser.add_argument("--model_name", type=str, default="microsoft/Phi-3-mini-4k-instruct", help="Model checkpoint name")
+    parser.add_argument("--min_year", type=int, default=1800, help="Minimum year")
+    parser.add_argument("--max_year", type=int, default=2020, help="Maximum year")
+    parser.add_argument("--condition", action='store_true', help="Condition the first digit differs")
+    parser.add_argument("--sample_size", type=int, default=10, help="Number of samples to evaluate")
+    parser.add_argument("--device", type=str, choices=["cuda", "mps", "cpu"], default="cuda", help="Preferred device order")
+    args = parser.parse_args()
+    
+    model = HookedTransformer.from_pretrained(args.model_name)
     model.cfg.use_attn_result = True
     model.set_use_attn_result(True)
-    model = model.to('cuda')
+    model = model.to(args.device)
     
-    min_year, max_year = 1800, 2020
-    sample_size = 10
-    condition = False
+    min_year, max_year = args.min_year, args.max_year
+    sample_size = args.sample_size
+    condition = args.condition
     ret_dir = os.path.join("circuit", f'{min_year}_{max_year}_{sample_size}{"_differ_in_first_digit" if condition else ""}')   
     
     csv_path = f"dataset_qa_yesno_150_{min_year}_{max_year}{'_True' if condition else ''}.csv"

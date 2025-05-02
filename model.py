@@ -9,7 +9,6 @@ from transformer_lens import HookedTransformer
 # print(tokenizer)
 
 model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-model = model.to('cuda')
 print(model)
 n_heads = model.cfg.n_heads
 model.cfg.use_attn_result = True

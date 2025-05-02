@@ -177,14 +177,24 @@ def visualize_answer_heads(min_year=None, max_year=None, sample_size=None, condi
     merged_df = merged_df.sort_values("delta", ascending=False)
     print(merged_df)
 
+import argparse
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Comparison Circuit Analysis")
+    parser.add_argument("--model_name", type=str, default="microsoft/Phi-3-mini-4k-instruct", help="Model checkpoint name")
+    parser.add_argument("--min_year", type=int, default=1800, help="Minimum year")
+    parser.add_argument("--max_year", type=int, default=2020, help="Maximum year")
+    # parser.add_argument("--condition", action='store_true', help="Condition the first digit differs")
+    parser.add_argument("--sample_size", type=int, default=10, help="Number of samples to evaluate")
+    parser.add_argument("--device", type=str, choices=["cuda", "mps", "cpu"], default="cuda", help="Preferred device order")
+    args = parser.parse_args()
+    
     model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
     model.cfg.use_attn_result = True
     model.set_use_attn_result(True)
-    model = model.to('cuda')
+    model = model.to(args.device)
     
-    min_year, max_year = 1800, 2020
-    sample_size = 10
+    min_year, max_year = args.min_year, args.max_year
+    sample_size = args.sample_size
     condition = False
     ret_dir = os.path.join("circuit", f'{min_year}_{max_year}_{sample_size}{"_differ_in_first_digit" if condition else ""}')   
     

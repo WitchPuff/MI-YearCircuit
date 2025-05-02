@@ -316,15 +316,26 @@ def head_causal(model,
 
 
 
-
+import argparse
 if __name__ == "__main__":
-    model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    parser = argparse.ArgumentParser(description="Causal Analysis")
+    parser.add_argument("--model_name", type=str, default="microsoft/Phi-3-mini-4k-instruct", help="Model checkpoint name")
+    parser.add_argument("--min_year", type=int, default=1000, help="Minimum year")
+    parser.add_argument("--max_year", type=int, default=2020, help="Maximum year")
+    parser.add_argument("--sample_size", type=int, default=10, help="Number of samples to evaluate")
+    parser.add_argument("--device", type=str, choices=["cuda", "mps", "cpu"], default="cuda", help="Preferred device order")
+    args = parser.parse_args()
+    
+    model = HookedTransformer.from_pretrained(args.model_name)
     model.cfg.use_attn_result = True
     model.set_use_attn_result(True)
-    model = model.to('cuda')
+    model = model.to(args.device)
+    model.eval()
+    
     year_pos = (range(22, 26), range(29, 33))
     answer_pos = (37, 41)
-    prompts, labels = load_data("dataset_qa_yesno_150_1800_2020.csv", sample_size=10)
+    
+    prompts, labels = load_data(f"dataset_qa_yesno_150_{args.min_year}_{args.max_year}.csv", sample_size=args.sample_size)
     
     results = pd.DataFrame()
     layers = range(19)

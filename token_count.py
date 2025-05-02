@@ -1,5 +1,4 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from transformer_lens import HookedTransformer
+from transformers import AutoTokenizer
 from collections import Counter
 
 

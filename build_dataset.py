@@ -77,20 +77,37 @@ def sanity_check(
         print(f"Dataset saved to dataset_{prompt_style}_{n_samples}_{condition}.csv")
     
     return accuracy, results
+
+import argparse
+
 if __name__ == "__main__":
-    tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-    # model  = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-    model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    parser = argparse.ArgumentParser(description="Build dataset for year comparison task")
+
+    parser.add_argument("--model_name", type=str, default="microsoft/Phi-3-mini-4k-instruct", help="Model checkpoint name")
+    parser.add_argument("--n_samples", type=int, default=150, help="Number of samples to evaluate")
+    parser.add_argument("--max_year", type=int, default=2020, help="Maximum year for generation")
+    parser.add_argument("--min_year", type=int, default=1800, help="Minimum year for generation")
+    parser.add_argument("--prompt_style", type=str, default="qa_yesno", help="Prompt style to use")
+    parser.add_argument("--fewshot", type=int, default=0, help="Number of few-shot examples")
+    parser.add_argument("--condition", action='store_true', help="Condition the first digit differs")
+    parser.add_argument("--use_logits", action='store_true', help="Use logits for evaluation")
+    parser.add_argument("--verbose", action='store_true', help="Enable verbose output")
+
+    args = parser.parse_args()
+
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+    model = HookedTransformer.from_pretrained(args.model_name)
     model = model.to('cuda')
+
     acc, results = sanity_check(
         model=model,
         tokenizer=tokenizer,
-        n_samples=150,
-        max_year=2020,
-        min_year=1800,
-        prompt_style="qa_yesno",
-        fewshot=0,
-        condition=True,
-        use_logits=True,
-        verbose=True
+        n_samples=args.n_samples,
+        max_year=args.max_year,
+        min_year=args.min_year,
+        prompt_style=args.prompt_style,
+        fewshot=args.fewshot,
+        condition=args.condition,
+        use_logits=args.use_logits,
+        verbose=args.verbose
     )

@@ -42,6 +42,7 @@ def visualize_r2(results, caption='', result_dir='probing'):
     plt.ylim(0, 1.1)
     plt.legend()
     plt.savefig(os.path.join(result_dir, f"ridge_{caption}.png"))
+    print(f"Saved visualization to {os.path.join(result_dir, f'ridge_{caption}.png')}")
 
 def visualize_vtime(x_avg, v_time_avg, x_pos, vtimes, y, caption='', result_dir='probing'):
     os.makedirs(result_dir, exist_ok=True)
@@ -74,28 +75,27 @@ def visualize_vtime(x_avg, v_time_avg, x_pos, vtimes, y, caption='', result_dir=
     ax2.set_ylabel("Years")
     ax2.legend()
 
-    plt.savefig(os.path.join(result_dir, f"vtime_{caption}.png"))
+    plt.savefig(os.path.join(result_dir, f"vtime_{caption.replace(' ', '_')}.png"))
+    print(f"Saved visualization to {os.path.join(result_dir, f'vtime_{caption.replace(' ', '_')}.png')}")
 
-
+import argparse
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Load dataset and model for year comparison")
 
-    # tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-    # model  = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-    # model = AutoModel.from_pretrained("microsoft/Phi-3-mini-4k-instruct", output_hidden_states=True)
-    model = HookedTransformer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    parser.add_argument("--model_name", type=str, default="microsoft/Phi-3-mini-4k-instruct", help="Model checkpoint name")
+    parser.add_argument("--min_year", type=int, default=1000, help="Minimum year")
+    parser.add_argument("--max_year", type=int, default=2020, help="Maximum year")
+    parser.add_argument("--device", type=str, choices=["cuda", "mps", "cpu"], default="cuda", help="Preferred device order")
+
+    args = parser.parse_args()
+    
+    model = HookedTransformer.from_pretrained(args.model_name)
     print(model)
-    if torch.cuda.is_available():
-        device = torch.device("cuda")
-    elif torch.backends.mps.is_available():
-        device = torch.device("mps")
-    else:
-        device = torch.device("cpu")
-    print(f"Using device: {device}")
-    model = model.to(device)
+    model = model.to(args.device)
     model.eval()
 
-    min_year = 1000
-    max_year = 2020
+    min_year = args.min_year
+    max_year = args.max_year
     dataset = pd.read_csv(f"dataset_qa_yesno_150_{min_year}_{max_year}.csv")
     years1 = dataset['year1'].tolist()
     years2 = dataset['year2'].tolist()
