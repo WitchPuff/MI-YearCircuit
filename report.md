@@ -285,5 +285,7 @@ To close this gap, further work is needed. In particular, more fine-grained abla
 
 
 
+## Reference
 
-
+- Rai, D., Zhou, Y., Feng, S., Saparov, A., & Yao, Z. (2024). *A Practical Review of Mechanistic Interpretability for Transformer-Based Language Models*. https://arxiv.org/html/2407.02646v1#S4
+- Gurnee, W., & Tegmark, M. (2023). *Language Models Represent Space and Time*. Massachusetts Institute of Technology. [arXiv:2301.05217](https://arxiv.org/abs/2301.05217)
